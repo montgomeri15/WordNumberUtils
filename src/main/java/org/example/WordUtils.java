@@ -1,21 +1,29 @@
 package org.example;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class WordUtils {
 
+    public String getShortestWord(List<String> words){
+        Optional<String> shortestWord = Optional.ofNullable(words.get(0));
 
+        for (int i = 0; i < words.size(); i++){
+            if (words.get(i).length() < shortestWord.get().length()){
+                shortestWord = Optional.ofNullable(words.get(i));
+            }
+        }
+        return shortestWord.get();
+    }
+
+    public Map<String, Integer> wordsCounter(List<String> wordsToCount){
+        Map<String, Integer> countedWords = new HashMap<>();
+
+        for (String word : wordsToCount) {
+            Integer temp = countedWords.put(word, 1);
+            if (temp != null) {
+                countedWords.put(word, ++temp);
+            }
+        }
+        return countedWords;
+    }
 }
-
-
-/**
- *Створити Клас WordUtils у якого є метод:
- * getShortestWord(List words) - знаходить найкоротше слово
- * порахувати кількість входжень слів у речення
- *
- * Створити Клас NumberUtils у якого є методи які:
- * getSum(List numbers) - Порахувати суму чисел
- * multiplyOddNumber(List numbers) - знаходить непарні числа і множить на 2 і повертає список помножених чисел.
- * Приклад : 1, 2, 3 -> 2, 6
- * */
