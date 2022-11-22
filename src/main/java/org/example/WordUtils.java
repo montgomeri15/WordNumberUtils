@@ -18,12 +18,10 @@ public class WordUtils {
     public Map<String, Integer> wordsCounter(List<String> wordsToCount){
         Map<String, Integer> countedWords = new HashMap<>();
 
-        for (String word : wordsToCount) {
-            Integer temp = countedWords.put(word, 1);
-            if (temp != null) {
-                countedWords.put(word, ++temp);
-            }
-        }
+        wordsToCount.forEach(word -> {
+            countedWords.putIfAbsent(word, 0);
+            countedWords.computeIfPresent(word, (w, prev) -> prev + 1);
+        });
         return countedWords;
     }
 }
