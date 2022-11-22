@@ -1,18 +1,26 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class NumberUtils {
 
-    public int getSum(List numbers){
+    public int getSum(@NotNull List<Integer> numbers){
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum;
+    }
 
-        return 0;
+    public @NotNull List<Integer> multiplyOddNumber(@NotNull List<Integer> numbers) {
+        List<Integer> oddNumbersMultipliedBy2 = new ArrayList<>();
+        for (Integer number : numbers) {
+            if (number % 2 != 0) {
+                oddNumbersMultipliedBy2.add(number * 2);
+            }
+        }
+        return oddNumbersMultipliedBy2;
     }
 }
-
-/**
- * Створити Клас NumberUtils у якого є методи які:
- * getSum(List numbers) - Порахувати суму чисел
- * multiplyOddNumber(List numbers) - знаходить непарні числа і множить на 2 і повертає список помножених чисел.
- * Приклад : 1, 2, 3 -> 2, 6
- * */

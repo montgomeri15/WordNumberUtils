@@ -1,21 +1,23 @@
 package org.example;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.*;
 
 public class WordUtils {
 
-    public String getShortestWord(List<String> words){
-        Optional<String> shortestWord = Optional.ofNullable(words.get(0));
+    public String getShortestWord(@NotNull List<String> words){
+        String shortestWord = words.get(0);
 
-        for (int i = 0; i < words.size(); i++){
-            if (words.get(i).length() < shortestWord.get().length()){
-                shortestWord = Optional.ofNullable(words.get(i));
+        for (String word : words){
+            if (word.length() < shortestWord.length()){
+                shortestWord = word;
             }
         }
-        return shortestWord.get();
+        return shortestWord;
     }
 
-    public Map<String, Integer> wordsCounter(List<String> wordsToCount){
+    public Map<String, Integer> wordsCounter(@NotNull List<String> wordsToCount){
         Map<String, Integer> countedWords = new HashMap<>();
 
         wordsToCount.forEach(word -> {
